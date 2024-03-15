@@ -56,7 +56,7 @@ function App() {
                                         </Button>
                                         </a>
                                       
-                                        <DialogDemo />
+                                        <DialogDemo tokenId={x.edition}/>
                                         
                                     </Box>
 

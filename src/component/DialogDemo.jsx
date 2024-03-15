@@ -1,9 +1,12 @@
 import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes"
 import { useState } from "react"
+import useTransfer from "../hooks/useTransfer"
 
 
-const DialogDemo = () => {
-   const {tokenid, settokenid} = useState("")
+const DialogDemo = ({tokenId}) => {
+   const [address, setAddress] = useState("")
+   
+    const handleTransfer = useTransfer(address, tokenId);
   return (
     <Dialog.Root>
         <Dialog.Trigger>
@@ -22,7 +25,8 @@ const DialogDemo = () => {
           Address
         </Text>
         <TextField.Input
-          defaultValue="Freja Johnsen"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
           placeholder="Enter your full name"
         />
       </label>
@@ -36,7 +40,7 @@ const DialogDemo = () => {
         </Button>
       </Dialog.Close>
       <Dialog.Close>
-        <Button className="bg-blue-600">Transfer</Button>
+        <Button onClick={handleTransfer}className="bg-blue-600">Transfer</Button>
       </Dialog.Close>
     </Flex>
   </Dialog.Content>
