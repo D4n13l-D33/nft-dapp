@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { getProposalsContract } from "../constants/contracts";
 import { Contract, ethers, isAddress } from "ethers";
 import { useWeb3ModalAccount, useWeb3ModalProvider } from "@web3modal/ethers/react";
@@ -11,6 +11,25 @@ const useTransfer = (to, tokenID) => {
     const { walletProvider } = useWeb3ModalProvider();
 
     console.log ("values", to, tokenID);
+
+    useEffect(()=>{
+
+        const filter = {
+            address: import.meta.env.VITE_ballot_contract_address,
+            topics: [
+                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            ],
+        };
+    
+        const wssProvider = new ethers.WebSocketProvider(
+            import.meta.env.VITE_wss_rpc_url
+        );
+    
+        wssProvider.on(filter);
+    
+        return () => wssProvider.off(filter);
+
+    }, []);
 
 return useCallback(async () => {
     console.log("succesful 1", to, tokenID)

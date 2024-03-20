@@ -10,6 +10,7 @@ import { useState } from "react";
 import useMintNft from "./hooks/useMintNft";
 
 
+
 configureWeb3Modal();
 
 function App() {

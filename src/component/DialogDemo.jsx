@@ -27,7 +27,7 @@ const DialogDemo = ({tokenId}) => {
         <TextField.Input
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder="Enter your full name"
+          placeholder="Enter Address"
         />
       </label>
       
